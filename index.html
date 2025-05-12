@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <style>
+      :root {
+        --primary-color: #1a1a2e;
+        --secondary-color: #16213e;
+        --accent-color: #0f3460;
+        --text-color: #e6e6e6;
+        --highlight-color: #00b4d8;
+        --card-bg: #2a2a3a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background-color: var(--secondary-color);
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--highlight-color);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--highlight-color);
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          /* Replace with your background image */
+            url("your-hero-background.jpg") no-repeat center center/cover;
+      }
+
+      .hero-content {
+        max-width: 600px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .hero p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--highlight-color);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #0096c7;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        font-size: 36px;
+        color: var(--highlight-color);
+      }
+
+      .education-item,
+      .work-item,
+      .project-card,
+      .achievement-card {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .education-item h3,
+      .work-item h3,
+      .project-card h3,
+      .achievement-card h3 {
+        color: var(--highlight-color);
+        margin-bottom: 10px;
+      }
+
+      .education-item p,
+      .work-item p,
+      .project-card p,
+      .achievement-card p {
+        margin-bottom: 10px;
+      }
+
+      .date {
+        color: #aaa;
+        font-style: italic;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .skill-category {
+        background-color: var(--card-bg);
+        padding: 25px;
+        border-radius: 10px;
+        flex: 1;
+        min-width: 250px;
+        max-width: 350px;
+      }
+
+      .skill-category h3 {
+        color: var(--highlight-color);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .skill-item {
+        margin-bottom: 15px;
+      }
+
+      .skill-name {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .skill-bar {
+        height: 10px;
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background-color: var(--highlight-color);
+        border-radius: 5px;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        /* Replace with your project images */
+        background-color: #555;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .project-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .project-links a:hover {
+        color: var(--highlight-color);
+      }
+
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .achievement-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        /* Replace with your achievement images */
+        background-color: #555;
+      }
+
+      .interests-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .interest-card {
+        background-color: var(--card-bg);
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        width: 200px;
+        transition: transform 0.3s;
+      }
+
+      .interest-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .interest-card i {
+        font-size: 40px;
+        color: var(--highlight-color);
+        margin-bottom: 15px;
+      }
+
+      .profile-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--highlight-color);
+        margin-bottom: 30px;
+        /* Replace with your profile image */
+        background-color: #555;
+      }
+
+      footer {
+        background-color: var(--secondary-color);
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .social-links a {
+        color: var(--text-color);
+        font-size: 24px;
+        transition: color 0.3s;
+      }
+
+      .social-links a:hover {
+        color: var(--highlight-color);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .projects-grid,
+        .achievements-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">My Portfolio</div>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" id="about">
+      <div class="container">
+        <div class="hero-content">
+          <img
+            src="your-profile-image.jpg"
+            alt="NITESH SHARMA"
+            class="profile-img"
+          />
+          <h1>
+            Hi, I'm
+            <span style="color: var(--highlight-color)">NITESH SHARMA</span>
+          </h1>
+          <p>
+            A passionate engineer with expertise in different programming
+            languages [HTML CSS JAVA C C++ PYTHON DSA] .I love creating
+            innovative solutions and tackling complex problems.
+          </p>
+          <a href="#contact" class="btn">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">BTECH (CSE)</h2>
+
+        <div class="education-item">
+          <h3>SOUTH ASIAN UNIVERSITY</h3>
+          <p>Bachelor of Science in Computer Science</p>
+          <p class="date">2024 - 2028</p>
+          <p>GPA: 3.8/4.0</p>
+          <h4>Relevant Coursework:</h4>
+          <ul>
+            <li>Data Structures and Algorithms</li>
+            <li>Database Systems</li>
+            <li>Machine Learning</li>
+            <li>Web Development</li>
+            <li>Operating Systems</li>
+          </ul>
+        </div>
+
+        <div class="education-item">
+          <h3>APS NAGROTA</h3>
+          <p>95% secured in 12th grade</p>
+          <p class="date">2020 - 2023</p>
+          <p>GPA: 4.0/4.0</p>
+          <h4>Achievements</h4>
+          <ul>
+            <li>inter school basketball champion 2023</li>
+            <li>Valedictorian</li>
+            <li>National Merit Scholar</li>
+            <li>Science Olympiad Gold Medalist</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skills-container">
+          <div class="skill-category">
+            <h3>Technical Skills</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Python</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>JavaScript</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>HTML/CSS</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 95%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>React</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Professional Skills</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Project Management</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Team Leadership</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Public Speaking</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Technical Writing</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Tools & Technologies</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Git</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Docker</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>AWS</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Figma</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <img
+              src="https://www.rafaelastorga.com/portfolios/epic-images-of-neymar-jr-by-rafael-astorga-for-ea/"
+              alt="Project 1"
+            />
+            <h3>E-commerce Platform</h3>
+            <p>
+              A full-stack e-commerce website with user authentication, product
+              catalog, shopping cart, and payment integration.
+            </p>
+            <p>
+              <strong>Technologies:</strong> React, Node.js, MongoDB, Stripe API
+            </p>
+            <div class="project-links">
+              <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img src="project2.jpg" alt="Project 2" />
+            <h3>Machine Learning Model for Fraud Detection</h3>
+            <p>
+              Developed a predictive model to detect fraudulent transactions
+              with 95% accuracy using Random Forest algorithm.
+            </p>
+            <p>
+              <strong>Technologies:</strong> Python, Scikit-learn, Pandas,
+              Matplotlib
+            </p>
+            <div class="project-links">
+              <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img src="project3.jpg" alt="Project 3" />
+            <h3>Task Management App</h3>
+            <p>
+              A collaborative task management application with real-time
+              updates, task assignment, and progress tracking.
+            </p>
+            <p><strong>Technologies:</strong> Vue.js, Firebase, Vuex</p>
+            <div class="project-links">
+              <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <div class="container">
+        <h2 class="section-title">Achievements</h2>
+
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <img src="achievement1.jpg" alt="Achievement 1" />
+            <h3>Hackathon Winner</h3>
+            <p class="date">2023</p>
+            <p>
+              Won first place in the National Coding Challenge for developing an
+              innovative solution to urban traffic congestion using AI.
+            </p>
+          </div>
+
+          <div class="achievement-card">
+            <img src="achievement2.jpg" alt="Achievement 2" />
+            <h3>Research Paper Publication</h3>
+            <p class="date">2022</p>
+            <p>
+              Published a paper on "Advanced Neural Network Architectures for
+              Image Recognition" in the International Journal of Computer
+              Science.
+            </p>
+          </div>
+
+          <div class="achievement-card">
+            <img src="achievement3.jpg" alt="Achievement 3" />
+            <h3>Google Developer Scholarship</h3>
+            <p class="date">2021</p>
+            <p>
+              Awarded the Google Developer Scholarship for outstanding
+              performance in the Mobile Web Specialist Nanodegree program.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Work Experience</h2>
+
+        <div class="work-item">
+          <h3>Software Engineer</h3>
+          <p>Tech Solutions Inc.</p>
+          <p class="date">June 2022 - Present</p>
+          <ul>
+            <li>
+              Developed and maintained web applications using React and Node.js,
+              improving performance by 40%
+            </li>
+            <li>
+              Led a team of 5 developers to deliver a customer management system
+              ahead of schedule
+            </li>
+            <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
+            <li>Mentored junior developers and conducted code reviews</li>
+          </ul>
+        </div>
+
+        <div class="work-item">
+          <h3>Intern Developer</h3>
+          <p>Innovate Startup Labs</p>
+          <p class="date">May 2021 - August 2021</p>
+          <ul>
+            <li>
+              Assisted in developing the company's flagship mobile application
+            </li>
+            <li>
+              Implemented new features that increased user retention by 25%
+            </li>
+            <li>
+              Conducted user research and presented findings to the product team
+            </li>
+            <li>Fixed critical bugs in the authentication system</li>
+          </ul>
+        </div>
+
+        <div class="work-item">
+          <h3>Freelance Web Developer</h3>
+          <p>Self-employed</p>
+          <p class="date">2019 - 2022</p>
+          <ul>
+            <li>Designed and developed websites for 15+ small businesses</li>
+            <li>
+              Improved clients' online presence leading to increased sales
+            </li>
+            <li>Provided ongoing maintenance and support services</li>
+            <li>
+              Worked closely with clients to understand their business needs
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="container">
+        <h2 class="section-title">Interests & Hobbies</h2>
+
+        <div class="interests-container">
+          <div class="interest-card">
+            <i class="fas fa-code"></i>
+            <h3>Coding</h3>
+            <p>
+              Exploring new technologies and contributing to open source
+              projects
+            </p>
+          </div>
+
+          <div class="interest-card">
+            <i class="fas fa-book"></i>
+            <h3>Reading</h3>
+            <p>Science fiction, technology, and personal development books</p>
+          </div>
+
+          <div class="interest-card">
+            <i class="fas fa-camera"></i>
+            <h3>Photography</h3>
+            <p>Capturing landscapes and urban architecture</p>
+          </div>
+
+          <div class="interest-card">
+            <i class="fas fa-music"></i>
+            <h3>Music</h3>
+            <p>Playing guitar and piano as a hobby</p>
+          </div>
+
+          <div class="interest-card">
+            <i class="fas fa-plane"></i>
+            <h3>Travel</h3>
+            <p>Exploring new cultures and cuisines</p>
+          </div>
+
+          <div class="interest-card">
+            <i class="fas fa-robot"></i>
+            <h3>AI Research</h3>
+            <p>
+              Keeping up with the latest developments in artificial intelligence
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+
+        <div style="text-align: center; max-width: 600px; margin: 0 auto">
+          <p>
+            I'm currently looking for new opportunities. Whether you have a
+            question or just want to say hi, I'll get back to you as soon as
+            possible!
+          </p>
+          <a
+            href="mailto:your.email@example.com"
+            class="btn"
+            style="margin-top: 30px"
+            >Send Me an Email</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="social-links">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2023 Your Name. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Add animation when scrolling to sections
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>
